@@ -1,4 +1,5 @@
 import unittest
+import random
 from time import sleep
 
 from selenium import webdriver
@@ -17,8 +18,8 @@ class Test2(unittest.TestCase):
     Sign_upbtn = (By.CLASS_NAME, 'fa-lock')
     Signup_form = (By.CLASS_NAME, 'signup-form')
     Name_new_user = (By.XPATH, '//input[@placeholder= "Name"]')
-    Email_nwe_user = (By.XPATH, '//*[@id="form"]/div/div/div[3]/div/form/input[3]')
-    Signup_btn = (By.XPATH, '//*[@id="form"]/div/div/div[3]/div/form/button')
+    Email_nwe_user = (By.XPATH, '//input[@data-qa="signup-email"]')
+    Signup_btn = (By.XPATH, '//button[@data-qa="signup-button"]')
     Login_form = (By.CLASS_NAME, 'text-center')
     Mrs_box = (By.ID, 'id_gender2')
     Password_form = (By.ID, 'password')
@@ -35,24 +36,24 @@ class Test2(unittest.TestCase):
     City_fild = (By.ID, 'city')
     Zipcode_fild = (By.ID,'zipcode')
     Mobile_number = (By.ID, 'mobile_number')
-    Create_account = (By.XPATH, '//*[@id="form"]/div/div/div/div[1]/form/button')
+    Create_account = (By.XPATH, '//button[@data-qa="create-account"]')
     Continue_btn = (By.LINK_TEXT, 'Continue')
     Message_existing_email = (By.XPATH, '//*[@id="form"]/div/div/div[3]/div/form/p')
-    Existind_user_email = (By.XPATH, '//*[@id="form"]/div/div/div[1]/div/form/input[2]')
-    Password_existing_user = (By.XPATH, '//*[@id="form"]/div/div/div[1]/div/form/input[3]')
-    Login_btn = (By.XPATH, '//*[@id="form"]/div/div/div[1]/div/form/button')
-    Login_out = (By.XPATH, '//*[@id="header"]/div/div/div/div[2]/div/ul/li[4]/a')
+    Existind_user_email = (By.XPATH, '//input[@data-qa="login-email"]')
+    Password_existing_user = (By.XPATH, '//input[@data-qa="login-password"]')
+    Login_btn = (By.XPATH, '//button[@data-qa="login-button"]')
+    Login_out = (By.XPATH, '//a[@href="/logout"]')
     Message_incorect_password_email = (By.XPATH, '//*[@id="form"]/div/div/div[1]/div/form/p')
     Susbscribe_email = (By.ID,'susbscribe_email')
     Subscribe_btn = (By.ID,'subscribe')
-    Subscribe_successful = (By.XPATH, '/html/body/footer/div[1]/div/div/div[1]/div/div')
+    Subscribe_successful = (By.XPATH, '//div[@class="alert-success alert"]')
 
-    CONTACT_US_LINK = (By.XPATH, '//*[@id="header"]/div/div/div/div[2]/div/ul/li[8]/a')
-    Name_fild = (By.XPATH, '//*[@id="contact-us-form"]/div[1]/input')
-    Email_fild = (By.XPATH, '//*[@id="contact-us-form"]/div[2]/input')
-    Subject_fild = (By.XPATH, '//*[@id="contact-us-form"]/div[3]/input')
+    CONTACT_US_LINK = (By.XPATH, '//a[@href="/contact_us"]')
+    Name_fild = (By.XPATH, '//input[@data-qa="name"]')
+    Email_fild = (By.XPATH, '//input[@data-qa="email"]')
+    Subject_fild = (By.XPATH, '//input[@data-qa="subject"]')
     Message_fild = (By.XPATH, '//*[@id="message"]')
-    Submit_btn = (By.XPATH, '//*[@id="contact-us-form"]/div[6]/input')
+    Submit_btn = (By.XPATH, '//input[@data-qa="submit-button"]')
     Result = (By.CLASS_NAME, 'alert-success')
 
     def setUp(self):
@@ -90,9 +91,10 @@ class Test2(unittest.TestCase):
         self.assertTrue(elem.is_displayed(), 'New User Signup form nu e vizibil')
 
     def test_new_user_login(self):
+        randomNumber = random.randint(0,99999999)
         self.chrome.find_element(*self.Sign_upbtn).click()
         self.chrome.find_element(*self.Name_new_user).send_keys('Magdalena')
-        self.chrome.find_element(*self.Email_nwe_user).send_keys('magda2hjg3ro@yahoo.com')
+        self.chrome.find_element(*self.Email_nwe_user).send_keys(f' magda+{randomNumber}@yahoo.com')
         self.chrome.find_element(*self.Signup_btn).click()
         self.chrome.find_element(*self.Password_form).send_keys('Magdalena22')
         day = Select(self.chrome.find_element(By.ID, "days"))
@@ -111,11 +113,15 @@ class Test2(unittest.TestCase):
         self.chrome.find_element(*self.City_fild).send_keys('Satu Mare')
         self.chrome.find_element(*self.Zipcode_fild).send_keys('440123')
         self.chrome.find_element(*self.Mobile_number).send_keys('074555844855')
-        sleep(10)
-        self.chrome.find_element(*self.Create_account).click()
         sleep(5)
+        self.chrome.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+        sleep(5)
+        self.chrome.find_element(*self.Create_account).click()
+        actual = self.chrome.current_url
+        expected = 'https://automationexercise.com/account_created'
+        # expected value, actual value, mesaj in caz de fail
+        self.assertEqual(expected, actual, 'URL is incorrect')
         self.chrome.find_element(*self.Continue_btn).click()
-
 
     def test_existing_email(self):
         self.chrome.find_element(*self.Sign_upbtn).click()
@@ -167,12 +173,12 @@ class Test2(unittest.TestCase):
 
     def test_login(self):
         self.chrome.find_element(*self.CONTACT_US_LINK).click()
-
         self.chrome.find_element(*self.Name_fild).send_keys('Magdalena')
         self.chrome.find_element(*self.Email_fild).send_keys('magda99ro@yahoo.com')
         self.chrome.find_element(*self.Subject_fild).send_keys('Testare')
         self.chrome.find_element(*self.Message_fild).send_keys('Testare Automata')
-        sleep(5)
+        sleep(10)
+        self.chrome.execute_script("window.scrollTo(0,document.body.scrollHeight)")
         self.chrome.find_element(*self.Submit_btn).click()
         obj = self.chrome.switch_to.alert
         obj.accept()

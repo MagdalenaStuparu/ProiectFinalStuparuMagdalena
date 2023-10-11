@@ -11,9 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2 class="text-capitalize">TestReport</h2>
-                <p class='attribute'><strong>Start Time: </strong>2023-10-04 17:50:17</p>
-                <p class='attribute'><strong>Duration: </strong>269.14 s</p>
-                <p class='attribute'><strong>Summary: </strong>Total: 12, Pass: 11, Error: 1</p>
+                <p class='attribute'><strong>Start Time: </strong>2023-10-09 21:25:20</p>
+                <p class='attribute'><strong>Duration: </strong>211.53 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 12, Pass: 12</p>
             </div>
         </div>
         <div class="row">
@@ -91,77 +91,12 @@
                             <td class="col-xs-1">
                             </td>
                         </tr>
-                        <tr class='warning'>
+                        <tr class='success'>
                             <td class="col-xs-10">test_new_user_login</td>
                             <td class="col-xs-1">
-                                <span class="label label-warning" style="display:block;width:40px;">Error</span>
+                                <span class="label label-success" style="display:block;width:40px;">Pass</span>
                             </td>
                             <td class="col-xs-1">
-                                <button class="btn btn-default btn-xs">View</button>
-                            </td>
-                        </tr>
-                        <tr style="display:none;">
-                            <td class="col-xs-9" colspan="3"><p style="color:maroon;">NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="password"]"}
-  (Session info: chrome=117.0.5938.134); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Stacktrace:
-	GetHandleVerifier [0x00B2CEB3+45171]
-	(No symbol) [0x00AB9101]
-	(No symbol) [0x009ABE1D]
-	(No symbol) [0x009DED40]
-	(No symbol) [0x009DF20B]
-	(No symbol) [0x00A0F692]
-	(No symbol) [0x009FB094]
-	(No symbol) [0x00A0DCFA]
-	(No symbol) [0x009FAE46]
-	(No symbol) [0x009D675E]
-	(No symbol) [0x009D78FD]
-	GetHandleVerifier [0x00DE54B9+2897529]
-	GetHandleVerifier [0x00E2DC6B+3194411]
-	GetHandleVerifier [0x00E27A41+3169281]
-	GetHandleVerifier [0x00BB6130+606960]
-	(No symbol) [0x00AC2E7C]
-	(No symbol) [0x00ABF008]
-	(No symbol) [0x00ABF12F]
-	(No symbol) [0x00AB1827]
-	BaseThreadInitThunk [0x77087BA9+25]
-	RtlInitializeExceptionChain [0x7730B79B+107]
-	RtlClearBits [0x7730B71F+191]
-</p><p style="color:maroon;">Traceback (most recent call last):
-  File "C:\Users\vanes\PycharmProjects\ProiectFinalStuparuMagdalena\proiect_final.py", line 97, in test_new_user_login
-    self.chrome.find_element(*self.Password_form).send_keys('Magdalena22')
-  File "C:\Users\vanes\Desktop\ProiectFinalStuparuMagdalena\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 738, in find_element
-    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
-  File "C:\Users\vanes\Desktop\ProiectFinalStuparuMagdalena\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 344, in execute
-    self.error_handler.check_response(response)
-  File "C:\Users\vanes\Desktop\ProiectFinalStuparuMagdalena\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
-    raise exception_class(message, screen, stacktrace)
-selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="password"]"}
-  (Session info: chrome=117.0.5938.134); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Stacktrace:
-	GetHandleVerifier [0x00B2CEB3+45171]
-	(No symbol) [0x00AB9101]
-	(No symbol) [0x009ABE1D]
-	(No symbol) [0x009DED40]
-	(No symbol) [0x009DF20B]
-	(No symbol) [0x00A0F692]
-	(No symbol) [0x009FB094]
-	(No symbol) [0x00A0DCFA]
-	(No symbol) [0x009FAE46]
-	(No symbol) [0x009D675E]
-	(No symbol) [0x009D78FD]
-	GetHandleVerifier [0x00DE54B9+2897529]
-	GetHandleVerifier [0x00E2DC6B+3194411]
-	GetHandleVerifier [0x00E27A41+3169281]
-	GetHandleVerifier [0x00BB6130+606960]
-	(No symbol) [0x00AC2E7C]
-	(No symbol) [0x00ABF008]
-	(No symbol) [0x00ABF12F]
-	(No symbol) [0x00AB1827]
-	BaseThreadInitThunk [0x77087BA9+25]
-	RtlInitializeExceptionChain [0x7730B79B+107]
-	RtlClearBits [0x7730B71F+191]
-
-</p>
                             </td>
                         </tr>
                         <tr class='success'>
@@ -190,7 +125,7 @@ Stacktrace:
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Total: 12, Pass: 11, Error: 1 -- Duration: 269.14 s
+                                Total: 12, Pass: 12 -- Duration: 211.53 s
                             </td>
                         </tr>
                     </tbody>
